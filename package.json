@@ -1,0 +1,41 @@
+{
+  "name": "dispatch",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "packages/skills/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "build:cli": "bun run --filter @gnti/dispatch build",
+    "build:core": "bun run --filter @gnti/dispatch-core build",
+    "build:local-mcp": "bun run --filter @gnti/dispatch-mcp build",
+    "dev:cli": "bun run packages/cli/src/index.ts",
+    "dev:local-mcp": "bun run packages/local-mcp/src/index.ts",
+    "dev:remote-mcp": "bun run apps/remote-mcp/src/index.ts",
+    "format": "oxfmt . --write",
+    "format:check": "oxfmt . --check",
+    "lint": "oxlint . --deny-warnings",
+    "lint:fix": "oxlint . --fix",
+    "release:check": "bun run format:check && bun run lint && bun run typecheck && bun run build:core && bun run build:cli && bun run build:local-mcp",
+    "release:pack:cli": "cd packages/cli && bun run build && npm pack --dry-run",
+    "release:pack:core": "cd packages/core && bun run build && npm pack --dry-run",
+    "release:pack:local-mcp": "cd packages/local-mcp && bun run build && npm pack --dry-run",
+    "typecheck": "bun run --filter '*' typecheck"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.52.0",
+    "oxlint": "^1.67.0",
+    "tsdown": "^0.22.1",
+    "typescript": "^5.9.3"
+  },
+  "description": "Dispatch is an agent-ready messaging toolkit built on a shared TypeScript core. One operation powers every interface \u2014 a CLI command for humans and scripts, a local MCP stdio serve...",
+  "author": "Galaxy Nova Technologies & Innovations (GNTI) <https://gnti.tech>",
+  "homepage": "https://gnti.tech/projects/dispatch",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GNTI-X/dispatch.git"
+  },
+  "license": "MIT"
+}

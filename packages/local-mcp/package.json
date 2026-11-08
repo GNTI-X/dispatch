@@ -1,0 +1,38 @@
+{
+  "name": "@gnti/dispatch-mcp",
+  "version": "0.1.1",
+  "bin": {
+    "dispatch-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "bun run src/index.ts",
+    "pack:dry": "bun run build && npm pack --dry-run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bun run build"
+  },
+  "dependencies": {
+    "@gnti/dispatch-core": "^0.1.4",
+    "@modelcontextprotocol/sdk": "^1.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "latest"
+  }
+}
